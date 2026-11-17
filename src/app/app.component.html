@@ -1,0 +1,6 @@
+<app-loading-screen *ngIf="isLoading" [complete]="loadingComplete"></app-loading-screen>
+
+<div class="app-shell" [class.is-hidden]="isLoading">
+  <app-toast></app-toast>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,498 @@
+<div class="planner-page" [class.dark]="isDark">
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-overlay" [class.active]="isMobileNavOpen" (click)="toggleMobileNav()"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.collapsed]="isSidebarCollapsed" [class.mobile-open]="isMobileNavOpen">
+    <div class="sidebar-header">
+      <div class="brand" (click)="navigate('/dashboard')">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="#8175F5" stroke-width="1.5"/>
+            <circle cx="12" cy="12" r="4" fill="#8175F5"/>
+            <line x1="12" y1="3" x2="12" y2="1" stroke="#8175F5" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="12" y1="23" x2="12" y2="21" stroke="#8175F5" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="3" y1="12" x2="1" y2="12" stroke="#8175F5" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="23" y1="12" x2="21" y2="12" stroke="#8175F5" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="brand-name" *ngIf="!isSidebarCollapsed">StudyPilot AI</span>
+      </div>
+      <button class="sidebar-toggle" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item" (click)="navigate('/dashboard')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Dashboard</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/subjects')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Subjects</span>
+      </a>
+      <a class="nav-item active">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Study Planner</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/flashcards')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="11" x2="12" y2="15"/><line x1="10" y1="13" x2="14" y2="13"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Flashcards</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/quizzes')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Quizzes</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/coach')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <span *ngIf="!isSidebarCollapsed">AI Coach</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/focus')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Focus Timer</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/analytics')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Analytics</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/settings')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Settings</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content" [class.sidebar-collapsed]="isSidebarCollapsed">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" (click)="toggleMobileNav()" aria-label="Open menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="page-breadcrumb">
+          <span class="breadcrumb-parent" (click)="navigate('/dashboard')">Dashboard</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+          <span class="breadcrumb-current">Smart Study Planner</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="btn btn--secondary btn--sm" (click)="isAiRebalanceModalOpen = true">
+          ✦ AI Auto-Rebalance
+        </button>
+        <button class="btn btn--primary btn--sm" (click)="openAddTaskModal()">
+          + Add Task
+        </button>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <div class="container container--wide">
+      
+      <!-- Planner Header & Control Bar -->
+      <header class="planner-header">
+        <div class="planner-header__info">
+          <div class="planner-badge">
+            <span class="planner-badge__dot"></span>
+            Adaptive Schedule
+          </div>
+          <h1 class="planner-title">Smart Study Planner</h1>
+          <p class="planner-subtitle">
+            AI-optimized pacing based on exam urgency, topic difficulty, and your personal focus rhythm.
+          </p>
+        </div>
+
+        <div class="planner-header__actions">
+          <button class="btn btn--secondary" (click)="isAiRebalanceModalOpen = true" id="btn-ai-rebalance">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+            AI Auto-Rebalance
+          </button>
+          
+          <button class="btn btn--primary" (click)="openAddTaskModal()" id="btn-add-task">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add Task
+          </button>
+        </div>
+      </header>
+
+      <!-- Metrics Snapshot Banner -->
+      <section class="planner-metrics">
+        <div class="metric-card">
+          <div class="metric-card__icon" style="background: rgba(129, 117, 245, 0.12); color: #8175F5;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="metric-card__content">
+            <span class="metric-card__label">Planned Study Time</span>
+            <span class="metric-card__val">{{ getTotalPlannedHours() }} <small>hrs</small></span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-card__icon" style="background: rgba(56, 185, 138, 0.12); color: #38B98A;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <div class="metric-card__content">
+            <span class="metric-card__label">Completion Rate</span>
+            <span class="metric-card__val">{{ getCompletionPercent() }}%</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-card__icon" style="background: rgba(233, 172, 85, 0.12); color: #E9AC55;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </div>
+          <div class="metric-card__content">
+            <span class="metric-card__label">Total Scheduled</span>
+            <span class="metric-card__val">{{ filteredTasks.length }} <small>tasks</small></span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-card__icon" style="background: rgba(91, 164, 245, 0.12); color: #5BA4F5;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <div class="metric-card__content">
+            <span class="metric-card__label">Nearest Exam</span>
+            <span class="metric-card__val" style="font-size: 1.1rem; padding-top: 4px;">
+              {{ examDates[0] ? examDates[0].subjectName : 'Java Programming' }}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Calendar Controls & Week Bar -->
+      <section class="planner-controls">
+        <div class="date-navigator">
+          <button class="nav-btn" (click)="previousPeriod()" aria-label="Previous">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          
+          <button class="today-btn" (click)="goToToday()">Today</button>
+          
+          <span class="current-date-label">
+            {{ selectedDate | date:'MMMM y' }}
+          </span>
+
+          <button class="nav-btn" (click)="nextPeriod()" aria-label="Next">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Filter Row -->
+        <div class="filter-group">
+          <!-- View Switcher -->
+          <div class="view-toggles" role="tablist">
+            <button class="view-toggle" [class.is-active]="activeView === 'week'" (click)="activeView = 'week'; applyFilters()">
+              Week
+            </button>
+            <button class="view-toggle" [class.is-active]="activeView === 'day'" (click)="activeView = 'day'; applyFilters()">
+              Day
+            </button>
+            <button class="view-toggle" [class.is-active]="activeView === 'list'" (click)="activeView = 'list'; applyFilters()">
+              All List
+            </button>
+          </div>
+
+          <!-- Subject Select -->
+          <select class="form-control select-filter" [(ngModel)]="selectedSubjectFilter" (change)="applyFilters()">
+            <option value="all">All Subjects</option>
+            <option *ngFor="let s of subjects" [value]="s.id">{{ s.name }}</option>
+          </select>
+
+          <!-- Status Select -->
+          <select class="form-control select-filter" [(ngModel)]="selectedStatusFilter" (change)="applyFilters()">
+            <option value="all">All Statuses</option>
+            <option value="pending">Pending</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Weekly Day Strip (when activeView === 'week' or 'day') -->
+      <section class="week-strip">
+        <div class="week-strip__grid">
+          <div 
+            *ngFor="let day of weekDays" 
+            class="week-day-pill"
+            [class.is-today]="day.isToday"
+            [class.is-selected]="day.isSelected"
+            (click)="selectDate(day.date)">
+            <span class="day-label">{{ day.label }}</span>
+            <span class="day-num">{{ day.dayNumber }}</span>
+            <span class="day-task-count" *ngIf="getTasksForDay(day.date).length > 0">
+              {{ getTasksForDay(day.date).length }} tasks
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Task Grid / Schedule Area -->
+      <section class="planner-content">
+        <!-- Empty State -->
+        <div *ngIf="filteredTasks.length === 0" class="empty-schedule-card">
+          <div class="empty-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <h3>No tasks scheduled for this period</h3>
+          <p>Click "Add Task" to schedule a study session or use AI Auto-Rebalance to generate an optimized roadmap.</p>
+          <button class="btn btn--primary" (click)="openAddTaskModal()">Schedule First Session</button>
+        </div>
+
+        <!-- Task List -->
+        <div *ngIf="filteredTasks.length > 0" class="task-cards-list">
+          <article 
+            *ngFor="let task of filteredTasks" 
+            class="planner-task-card"
+            [class.is-completed]="task.status === 'completed'"
+            [style.border-left-color]="task.subjectColor">
+            
+            <!-- Completion Toggle Checkbox -->
+            <button 
+              class="task-check-circle"
+              [class.is-checked]="task.status === 'completed'"
+              (click)="toggleTaskStatus(task, $event)"
+              [attr.aria-label]="task.status === 'completed' ? 'Mark incomplete' : 'Mark completed'">
+              <svg *ngIf="task.status === 'completed'" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+
+            <!-- Time & Date -->
+            <div class="task-time-col">
+              <span class="task-time">{{ task.scheduledTime }}</span>
+              <span class="task-duration">{{ task.durationMinutes }}m</span>
+              <span class="task-date-sub">{{ task.scheduledDate | date:'MMM d' }}</span>
+            </div>
+
+            <!-- Subject & Topic Details -->
+            <div class="task-details-col">
+              <div class="task-tags-row">
+                <span class="subject-badge" [style.background]="task.subjectColor + '1a'" [style.color]="task.subjectColor">
+                  {{ task.subjectName }}
+                </span>
+                <span class="badge" [class.badge--error]="task.difficulty === 'hard'" [class.badge--warning]="task.difficulty === 'medium'" [class.badge--success]="task.difficulty === 'easy'">
+                  {{ task.difficulty | uppercase }}
+                </span>
+                <span *ngIf="task.isRevision" class="badge badge--accent">
+                  Revision
+                </span>
+              </div>
+              <h3 class="task-topic-title">{{ task.topicName }}</h3>
+              <p *ngIf="task.notes" class="task-note-snippet">{{ task.notes }}</p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="task-actions-col">
+              <!-- Focus Mode Launcher -->
+              <button 
+                class="btn-action btn-action--focus" 
+                (click)="startFocusSession(task)" 
+                title="Start Focused Pomodoro Session">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Focus
+              </button>
+
+              <!-- Postpone Button -->
+              <button 
+                class="btn-action" 
+                (click)="postponeTask(task, $event)" 
+                title="Postpone 1 day">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="13 17 18 12 13 7"></polyline>
+                  <polyline points="6 17 11 12 6 7"></polyline>
+                </svg>
+              </button>
+
+              <!-- Delete Button -->
+              <button 
+                class="btn-action btn-action--delete" 
+                (click)="deleteTask(task, $event)" 
+                title="Delete task">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </div><!-- /.container -->
+  </div><!-- /.page-body -->
+
+  <!-- ================= ADD TASK MODAL ================= -->
+  <div class="modal-overlay" *ngIf="isAddTaskModalOpen" (click)="closeAddTaskModal()">
+    <div class="modal-panel" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Schedule Study Session</h2>
+        <button class="modal-close-btn" (click)="closeAddTaskModal()" aria-label="Close">
+          &times;
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <select class="form-control" [(ngModel)]="newTask.subjectId">
+            <option *ngFor="let s of subjects" [value]="s.id">{{ s.name }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Topic or Objective</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            [(ngModel)]="newTask.topicName" 
+            placeholder="e.g. Memory Management Page Replacement">
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" [(ngModel)]="newTask.scheduledDate">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Time</label>
+            <input type="time" class="form-control" [(ngModel)]="newTask.scheduledTime">
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Duration (minutes)</label>
+            <select class="form-control" [(ngModel)]="newTask.durationMinutes">
+              <option [value]="30">30 min (Quick Review)</option>
+              <option [value]="45">45 min (Standard)</option>
+              <option [value]="60">60 min (Deep Work)</option>
+              <option [value]="90">90 min (Intense Focus)</option>
+              <option [value]="120">120 min (Exam Simulation)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Difficulty</label>
+            <select class="form-control" [(ngModel)]="newTask.difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" [(ngModel)]="newTask.isRevision">
+            <span>Mark as Spaced Repetition Revision</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Key Focus Notes (optional)</label>
+          <textarea 
+            class="form-control" 
+            [(ngModel)]="newTask.notes" 
+            rows="2" 
+            placeholder="e.g. Focus on FIFO vs LRU algorithm practice questions">
+          </textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn--ghost" (click)="closeAddTaskModal()">Cancel</button>
+        <button class="btn btn--primary" (click)="saveNewTask()">Schedule Session</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= AI REBALANCE MODAL ================= -->
+  <div class="modal-overlay" *ngIf="isAiRebalanceModalOpen" (click)="isAiRebalanceModalOpen = false">
+    <div class="modal-panel" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <div class="ai-header-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          Smart Schedule Optimization
+        </div>
+        <button class="modal-close-btn" (click)="isAiRebalanceModalOpen = false">&times;</button>
+      </div>
+
+      <div class="modal-body ai-rebalance-body">
+        <p class="ai-desc">
+          StudyPilot AI analyzes your upcoming exam milestones, confidence ratings, and weak topics to recalculate an optimal study workload for the next 14 days.
+        </p>
+
+        <div class="ai-factors-box">
+          <div class="factor-item">
+            <span class="factor-icon">📅</span>
+            <div>
+              <strong>Exam Proximity</strong>
+              <p>Allocates 40% more study slots to subjects tested within 2 weeks</p>
+            </div>
+          </div>
+          <div class="factor-item">
+            <span class="factor-icon">🧠</span>
+            <div>
+              <strong>Weakness Prioritization</strong>
+              <p>Schedules Hard & Low-Confidence topics during peak morning slots</p>
+            </div>
+          </div>
+          <div class="factor-item">
+            <span class="factor-icon">⏱️</span>
+            <div>
+              <strong>Cognitive Rest Intervals</strong>
+              <p>Inserts spaced repetition breaks to prevent burnout</p>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="isAiRebalancing" class="ai-processing-state">
+          <div class="ai-spinner"></div>
+          <p>Recalculating cognitive loads and reorganizing 18 topics...</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn--ghost" (click)="isAiRebalanceModalOpen = false" [disabled]="isAiRebalancing">Cancel</button>
+        <button class="btn btn--primary" (click)="runAiRebalance()" [disabled]="isAiRebalancing">
+          {{ isAiRebalancing ? 'Optimizing Schedule...' : 'Apply AI Optimization' }}
+        </button>
+      </div>
+    </div><!-- /.container -->
+  </div><!-- /.page-body -->
+</main>
+</div>

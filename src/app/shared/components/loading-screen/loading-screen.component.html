@@ -1,0 +1,41 @@
+<div class="loading-screen" [class.is-complete]="complete" aria-live="polite" role="status">
+  <!-- Background gradient -->
+  <div class="loading-bg"></div>
+  <div class="loading-bg-glow"></div>
+
+  <!-- Central animated symbol -->
+  <div class="loading-symbol" [class.is-complete]="complete">
+    <!-- Orbital rings -->
+    <div class="orbit orbit--outer">
+      <div class="orbit-light"></div>
+    </div>
+    <div class="orbit orbit--middle">
+      <div class="orbit-dot"></div>
+    </div>
+    <div class="orbit orbit--inner"></div>
+
+    <!-- Core icon -->
+    <div class="symbol-core">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <!-- Navigation/compass symbol -->
+        <circle cx="18" cy="18" r="16" stroke="rgba(168, 160, 255, 0.3)" stroke-width="1.5"/>
+        <path d="M18 4 L22 14 L18 12 L14 14 Z" fill="#8175F5"/>
+        <path d="M18 32 L14 22 L18 24 L22 22 Z" fill="rgba(168, 160, 255, 0.5)"/>
+        <path d="M4 18 L14 14 L12 18 L14 22 Z" fill="rgba(168, 160, 255, 0.4)"/>
+        <path d="M32 18 L22 22 L24 18 L22 14 Z" fill="rgba(168, 160, 255, 0.4)"/>
+        <circle cx="18" cy="18" r="3" fill="#A8A0FF"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Brand wordmark -->
+  <div class="loading-brand" [class.is-visible]="!complete">
+    <span class="brand-name">StudyPilot</span>
+    <span class="brand-accent">AI</span>
+  </div>
+
+  <!-- Status message -->
+  <p class="loading-message" [class.is-visible]="!complete">
+    Preparing your next breakthrough.
+  </p>
+</div>

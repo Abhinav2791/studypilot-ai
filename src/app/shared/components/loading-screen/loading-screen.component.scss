@@ -1,0 +1,219 @@
+@use 'sass:math';
+
+// ============================================================
+// Loading Screen
+// ============================================================
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background: #0D0F1E;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeIn 0.4s ease;
+
+  &.is-complete {
+    opacity: 0;
+    transform: scale(1.02);
+    pointer-events: none;
+  }
+}
+
+// Background
+.loading-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(129, 117, 245, 0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.loading-bg-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(129, 117, 245, 0.06) 0%, transparent 70%);
+  animation: breathe 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+
+// Symbol wrapper
+.loading-symbol {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeUp 0.8s cubic-bezier(0, 0, 0.2, 1) 0.2s both;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+
+  &.is-complete {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+// Orbital rings
+.orbit {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(168, 160, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--outer {
+    width: 160px;
+    height: 160px;
+    animation: rotate 8s linear infinite;
+  }
+
+  &--middle {
+    width: 118px;
+    height: 118px;
+    animation: rotateReverse 5s linear infinite;
+    border-color: rgba(168, 160, 255, 0.2);
+  }
+
+  &--inner {
+    width: 80px;
+    height: 80px;
+    animation: rotate 3s linear infinite;
+    border-color: rgba(129, 117, 245, 0.25);
+  }
+}
+
+// Orbit light — traveling dot on outer orbit
+.orbit-light {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8175F5;
+  box-shadow: 0 0 12px 3px rgba(129, 117, 245, 0.6),
+              0 0 24px 6px rgba(129, 117, 245, 0.3);
+}
+
+// Middle orbit dot
+.orbit-dot {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #A8A0FF;
+  box-shadow: 0 0 8px 2px rgba(168, 160, 255, 0.5);
+}
+
+// Core symbol
+.symbol-core {
+  position: relative;
+  z-index: 2;
+  width: 60px;
+  height: 60px;
+  background: rgba(129, 117, 245, 0.08);
+  border: 1px solid rgba(168, 160, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: glowPulse 3s ease-in-out infinite;
+
+  svg {
+    animation: fadeIn 0.6s ease 0.8s both;
+  }
+}
+
+// Brand
+.loading-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  animation: fadeUp 0.7s cubic-bezier(0, 0, 0.2, 1) 0.6s both;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+
+  &.is-visible { opacity: 1; }
+}
+
+.brand-name {
+  color: #EEF0FF;
+}
+
+.brand-accent {
+  color: #8175F5;
+  font-size: 1.25rem;
+  margin-left: 0.1rem;
+  background: linear-gradient(135deg, #8175F5, #A8A0FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Status message
+.loading-message {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: rgba(168, 160, 255, 0.6);
+  letter-spacing: 0.03em;
+  animation: fadeUp 0.7s cubic-bezier(0, 0, 0.2, 1) 0.9s both;
+  transition: opacity 0.3s ease;
+
+  &.is-visible { opacity: 1; }
+}
+
+// Reuse keyframes from global (they're already defined in styles.scss)
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateReverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(129, 117, 245, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(129, 117, 245, 0.4), 0 0 60px rgba(129, 117, 245, 0.15); }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .orbit { animation: none !important; }
+  .loading-bg-glow { animation: none !important; }
+  .symbol-core { animation: none !important; }
+  .loading-screen { transition: opacity 0.1s !important; }
+}

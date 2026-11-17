@@ -1,0 +1,504 @@
+<div class="landing-page">
+  <app-navbar></app-navbar>
+
+  <!-- ============================
+       HERO SECTION
+  ============================ -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <!-- Background -->
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-bg__gradient"></div>
+      <div class="hero-bg__grid"></div>
+      <div class="hero-bg__orb hero-bg__orb--1"></div>
+      <div class="hero-bg__orb hero-bg__orb--2"></div>
+    </div>
+
+    <div class="container hero__container">
+      <!-- Left: Content -->
+      <div class="hero__content">
+        <div class="hero__eyebrow animate-fade-up delay-1">
+          <span class="badge badge--accent">YOUR PERSONAL AI STUDY COACH</span>
+        </div>
+
+        <h1 class="hero__headline animate-fade-up delay-2" id="hero-heading">
+          Make Every<br>
+          <span class="text-gradient">Study Session</span><br>
+          Count.
+        </h1>
+
+        <p class="hero__description animate-fade-up delay-3">
+          Your syllabus, goals, and schedule come together in one intelligent planner that adapts to your learning progress.
+        </p>
+
+        <div class="hero__ctas animate-fade-up delay-4">
+          <button class="btn btn--primary btn--lg" (click)="buildMyPlan()" id="hero-cta-primary">
+            Build My Study Plan
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+          <button class="btn btn--secondary btn--lg" (click)="exploreFeatures()" id="hero-cta-secondary">
+            Explore Features
+          </button>
+        </div>
+
+        <p class="hero__trust animate-fade-up delay-5">
+          <span class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Personalized plans
+          </span>
+          <span class="trust-sep" aria-hidden="true">·</span>
+          <span class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Smarter revision
+          </span>
+          <span class="trust-sep" aria-hidden="true">·</span>
+          <span class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Clearer progress
+          </span>
+        </p>
+      </div>
+
+      <!-- Right: Interactive Dashboard Preview -->
+      <div class="hero__preview animate-scale-in delay-2" (click)="openFeature('/planner')" style="cursor:pointer" title="Click to open Smart Study Planner">
+        <div class="preview-card preview-card--main">
+          <!-- Today's Plan Header -->
+          <div class="preview-header">
+            <span class="preview-date">Today's Schedule</span>
+            <span class="badge badge--success">3/5 done</span>
+          </div>
+
+          <!-- Study tasks -->
+          <div class="preview-tasks">
+            <div class="preview-task preview-task--completed">
+              <div class="preview-task__dot" style="background:#38B98A"></div>
+              <div class="preview-task__info">
+                <span class="preview-task__subject">Java Programming</span>
+                <span class="preview-task__topic">Streams &amp; Lambda</span>
+              </div>
+              <div class="preview-task__time">9:00 AM</div>
+              <svg class="preview-task__check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38B98A" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="preview-task preview-task--active">
+              <div class="preview-task__dot" style="background:#8175F5"></div>
+              <div class="preview-task__info">
+                <span class="preview-task__subject">Database Mgmt</span>
+                <span class="preview-task__topic">Normalization 3NF</span>
+              </div>
+              <div class="preview-task__time">11:00 AM</div>
+              <span class="badge badge--accent" style="font-size:10px;padding:2px 6px">Now</span>
+            </div>
+            <div class="preview-task">
+              <div class="preview-task__dot" style="background:#E9AC55"></div>
+              <div class="preview-task__info">
+                <span class="preview-task__subject">Operating Systems</span>
+                <span class="preview-task__topic">Memory Management</span>
+              </div>
+              <div class="preview-task__time">2:00 PM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress ring card -->
+        <div class="preview-card preview-card--progress" (click)="$event.stopPropagation(); openFeature('/analytics')">
+          <p class="preview-card__label">Java Mastery</p>
+          <div class="preview-ring-container">
+            <svg class="progress-ring" width="56" height="56" viewBox="0 0 56 56">
+              <circle cx="28" cy="28" r="22" stroke="rgba(129,117,245,0.15)" stroke-width="5" fill="none"/>
+              <circle cx="28" cy="28" r="22" stroke="#8175F5" stroke-width="5" fill="none"
+                stroke-dasharray="138.2" stroke-dashoffset="69" stroke-linecap="round"/>
+            </svg>
+            <span class="preview-ring-value">50%</span>
+          </div>
+        </div>
+
+        <!-- AI recommendation card -->
+        <div class="preview-card preview-card--ai" (click)="$event.stopPropagation(); openFeature('/coach')">
+          <div class="preview-ai-icon">✦</div>
+          <p class="preview-ai-text">Start with Streams today — highest impact before your Java exam in 14 days.</p>
+        </div>
+
+        <!-- Exam countdown card -->
+        <div class="preview-card preview-card--exam" (click)="$event.stopPropagation(); openFeature('/subjects')">
+          <p class="preview-card__label">Next Exam</p>
+          <p class="preview-exam-days">14</p>
+          <p class="preview-exam-sub">days left</p>
+          <p class="preview-exam-name">Java Programming</p>
+        </div>
+
+        <!-- Floating revision reminder -->
+        <div class="preview-reminder" (click)="$event.stopPropagation(); openFeature('/flashcards')">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8175F5" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Flashcards Due: OS Processes
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       FEATURES SECTION (FULLY INTERACTIVE)
+  ============================ -->
+  <section class="section features-section" id="features" aria-labelledby="features-heading">
+    <div class="container">
+      <div class="section-heading animate-fade-up">
+        <span class="section-eyebrow">CLICK ANY FEATURE TO TEST</span>
+        <h2 class="section-heading__title" id="features-heading">Everything You Need to Study Smarter.</h2>
+        <p class="section-heading__sub">One connected workspace for planning, learning, and improving. Click on any card below to launch that tool directly.</p>
+      </div>
+
+      <div class="features-grid">
+        <div *ngFor="let feature of features; let i = index"
+             class="feature-card card card--interactive animate-fade-up"
+             [class]="'delay-' + (i + 1)"
+             (click)="openFeature(feature.route)"
+             tabindex="0"
+             role="button"
+             [attr.aria-label]="'Launch ' + feature.title">
+
+          <div class="feature-card__top">
+            <div class="feature-card__icon" [style.background]="feature.color + '15'" [style.borderColor]="feature.color + '30'">
+              <!-- Calendar icon -->
+              <svg *ngIf="feature.icon === 'calendar'" width="22" height="22" viewBox="0 0 24 24" fill="none" [attr.stroke]="feature.color" stroke-width="2" stroke-linecap="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <!-- Book icon -->
+              <svg *ngIf="feature.icon === 'book'" width="22" height="22" viewBox="0 0 24 24" fill="none" [attr.stroke]="feature.color" stroke-width="2" stroke-linecap="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+              <!-- Cards icon -->
+              <svg *ngIf="feature.icon === 'cards'" width="22" height="22" viewBox="0 0 24 24" fill="none" [attr.stroke]="feature.color" stroke-width="2" stroke-linecap="round">
+                <rect x="2" y="6" width="20" height="14" rx="2"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="11" x2="12" y2="15"/><line x1="10" y1="13" x2="14" y2="13"/>
+              </svg>
+              <!-- Help/Quiz icon -->
+              <svg *ngIf="feature.icon === 'help'" width="22" height="22" viewBox="0 0 24 24" fill="none" [attr.stroke]="feature.color" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+              <!-- Message icon -->
+              <svg *ngIf="feature.icon === 'message'" width="22" height="22" viewBox="0 0 24 24" fill="none" [attr.stroke]="feature.color" stroke-width="2" stroke-linecap="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              <!-- Chart icon -->
+              <svg *ngIf="feature.icon === 'chart'" width="22" height="22" viewBox="0 0 24 24" fill="none" [attr.stroke]="feature.color" stroke-width="2" stroke-linecap="round">
+                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </div>
+            <span class="feature-tag" [style.color]="feature.color">{{ feature.tag }}</span>
+          </div>
+
+          <h3 class="feature-card__title">{{ feature.title }}</h3>
+          <p class="feature-card__desc">{{ feature.description }}</p>
+
+          <div class="feature-card__footer">
+            <span class="feature-action" [style.color]="feature.color">
+              {{ feature.actionText }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       HOW IT WORKS
+  ============================ -->
+  <section class="section how-section" id="how-it-works" aria-labelledby="how-heading">
+    <div class="container">
+      <div class="section-heading animate-fade-up">
+        <h2 class="section-heading__title" id="how-heading">How StudyPilot Works</h2>
+        <p class="section-heading__sub">Three clear steps from setup to success.</p>
+      </div>
+
+      <div class="how-grid">
+        <div class="how-step animate-fade-up delay-1" (click)="openFeature('/subjects')" style="cursor:pointer">
+          <div class="how-step__number">01</div>
+          <div class="how-step__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8175F5" stroke-width="1.8" stroke-linecap="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <h3 class="how-step__title">Tell Us About Your Goals</h3>
+          <p class="how-step__desc">Enter your subjects, available study hours, exam dates, and confidence ratings per topic.</p>
+          <span class="how-link">Setup Subjects →</span>
+        </div>
+
+        <div class="how-connector animate-fade-in delay-2" aria-hidden="true">
+          <div class="how-connector__line"></div>
+          <div class="how-connector__arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(129,117,245,0.5)" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="how-step animate-fade-up delay-3" (click)="openFeature('/planner')" style="cursor:pointer">
+          <div class="how-step__number">02</div>
+          <div class="how-step__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8175F5" stroke-width="1.8" stroke-linecap="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <h3 class="how-step__title">Generate Your Adaptive Plan</h3>
+          <p class="how-step__desc">The planner balances high-difficulty topics, exam urgency, and your peak focus periods.</p>
+          <span class="how-link">View Planner →</span>
+        </div>
+
+        <div class="how-connector animate-fade-in delay-4" aria-hidden="true">
+          <div class="how-connector__line"></div>
+          <div class="how-connector__arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(129,117,245,0.5)" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="how-step animate-fade-up delay-5" (click)="openFeature('/analytics')" style="cursor:pointer">
+          <div class="how-step__number">03</div>
+          <div class="how-step__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8175F5" stroke-width="1.8" stroke-linecap="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3 class="how-step__title">Learn, Track, and Adapt</h3>
+          <p class="how-step__desc">Complete tasks, practice active recall, and let the AI auto-rebalance when life interrupts.</p>
+          <span class="how-link">Check Progress →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       PRODUCT PREVIEW TABS
+  ============================ -->
+  <section class="section preview-section" id="ai-coach" aria-labelledby="preview-heading">
+    <div class="container">
+      <div class="section-heading animate-fade-up">
+        <h2 class="section-heading__title" id="preview-heading">See StudyPilot in Action</h2>
+        <p class="section-heading__sub">Interactive workflows designed for real learning, not marketing mockups.</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="preview-tabs tabs animate-fade-up delay-1" role="tablist" aria-label="Product preview tabs">
+        <button class="tab-item" [class.is-active]="activeTab === 'plan'"
+                role="tab" [attr.aria-selected]="activeTab === 'plan'"
+                id="tab-plan" aria-controls="panel-plan"
+                (click)="setActiveTab('plan')" type="button">
+          Your Plan
+        </button>
+        <button class="tab-item" [class.is-active]="activeTab === 'progress'"
+                role="tab" [attr.aria-selected]="activeTab === 'progress'"
+                id="tab-progress" aria-controls="panel-progress"
+                (click)="setActiveTab('progress')" type="button">
+          Your Progress
+        </button>
+        <button class="tab-item" [class.is-active]="activeTab === 'coach'"
+                role="tab" [attr.aria-selected]="activeTab === 'coach'"
+                id="tab-coach" aria-controls="panel-coach"
+                (click)="setActiveTab('coach')" type="button">
+          Your AI Coach
+        </button>
+      </div>
+
+      <!-- Tab Panels -->
+      <div class="preview-panel card animate-scale-in delay-2">
+
+        <!-- Plan Panel -->
+        <div *ngIf="activeTab === 'plan'" class="preview-content" id="panel-plan" role="tabpanel" aria-labelledby="tab-plan">
+          <div class="mock-schedule">
+            <div class="mock-schedule__header">
+              <span class="mock-schedule__title">Weekly Study Schedule</span>
+              <button class="btn btn--secondary btn--sm" (click)="openFeature('/planner')">Open Full Planner →</button>
+            </div>
+            <div class="mock-schedule__days">
+              <div class="mock-day" *ngFor="let day of ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']; let i=index">
+                <div class="mock-day__label">{{ day }}</div>
+                <div class="mock-day__slots">
+                  <div class="mock-slot" [style.background]="i % 3 === 0 ? '#8175F515' : i % 3 === 1 ? '#38B98A15' : '#E9AC5515'"
+                       [style.borderColor]="i % 3 === 0 ? '#8175F540' : i % 3 === 1 ? '#38B98A40' : '#E9AC5540'"
+                       *ngIf="i < 5 || i === 1"></div>
+                  <div class="mock-slot" [style.background]="i % 2 === 0 ? '#5BA4F515' : '#A78BFA15'"
+                       [style.borderColor]="i % 2 === 0 ? '#5BA4F540' : '#A78BFA40'"
+                       *ngIf="i < 4"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress Panel -->
+        <div *ngIf="activeTab === 'progress'" class="preview-content" id="panel-progress" role="tabpanel" aria-labelledby="tab-progress">
+          <div class="mock-progress">
+            <div class="mock-schedule__header" style="margin-bottom:var(--space-4)">
+              <span class="mock-schedule__title">Syllabus Completion</span>
+              <button class="btn btn--secondary btn--sm" (click)="openFeature('/analytics')">View Detailed Heatmap →</button>
+            </div>
+            <div class="mock-progress__row" *ngFor="let item of [
+              {name:'Java Programming', pct:50, color:'#8175F5'},
+              {name:'Database Management', pct:67, color:'#38B98A'},
+              {name:'Operating Systems', pct:33, color:'#E9AC55'},
+              {name:'Computer Networks', pct:67, color:'#5BA4F5'}
+            ]">
+              <div class="mock-progress__label">
+                <span>{{ item.name }}</span>
+                <span [style.color]="item.color" style="font-weight:600">{{ item.pct }}%</span>
+              </div>
+              <div class="mock-progress__bar-bg">
+                <div class="mock-progress__bar" [style.width]="item.pct + '%'" [style.background]="item.color"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coach Panel -->
+        <div *ngIf="activeTab === 'coach'" class="preview-content" id="panel-coach" role="tabpanel" aria-labelledby="tab-coach">
+          <div class="mock-chat">
+            <div class="mock-chat__messages">
+              <div *ngFor="let msg of coachConversation"
+                   class="mock-message"
+                   [class.mock-message--user]="msg.role === 'user'"
+                   [class.mock-message--assistant]="msg.role === 'assistant'">
+                <div *ngIf="msg.role === 'assistant'" class="mock-message__avatar" aria-hidden="true">✦</div>
+                <div class="mock-message__bubble">{{ msg.text }}</div>
+              </div>
+            </div>
+            <div class="mock-chat__footer" style="padding-top: var(--space-4); text-align: center;">
+              <button class="btn btn--primary btn--sm" (click)="openFeature('/coach')">Ask the AI Coach Any Question →</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       PRICING SECTION (#pricing)
+  ============================ -->
+  <section class="section pricing-section" id="pricing" aria-labelledby="pricing-heading">
+    <div class="container">
+      <div class="section-heading animate-fade-up">
+        <span class="section-eyebrow">TRANSPARENT STUDENT PRICING</span>
+        <h2 class="section-heading__title" id="pricing-heading">Invest In Your Next Breakthrough</h2>
+        <p class="section-heading__sub">Start completely free with demo credentials or choose an upgraded plan for unlimited AI coaching.</p>
+
+        <!-- Billing Toggle -->
+        <div class="pricing-toggle">
+          <span [class.active]="!isAnnual" (click)="isAnnual = false">Monthly</span>
+          <button class="toggle-switch" [class.is-annual]="isAnnual" (click)="isAnnual = !isAnnual" aria-label="Toggle annual billing">
+            <span class="switch-handle"></span>
+          </button>
+          <span [class.active]="isAnnual" (click)="isAnnual = true">
+            Yearly <span class="discount-pill">Save 30%</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <div *ngFor="let plan of pricingPlans"
+             class="pricing-card card animate-fade-up"
+             [class.pricing-card--popular]="plan.isPopular">
+
+          <div class="popular-ribbon" *ngIf="plan.isPopular">MOST POPULAR</div>
+
+          <div class="pricing-header">
+            <h3 class="plan-name">{{ plan.name }}</h3>
+            <p class="plan-desc">{{ plan.description }}</p>
+          </div>
+
+          <div class="plan-price">
+            <span class="currency-amount">{{ isAnnual ? plan.annualPrice : plan.monthlyPrice }}</span>
+            <span class="price-period">/ {{ plan.period }}</span>
+          </div>
+
+          <ul class="plan-features" role="list">
+            <li *ngFor="let f of plan.features">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38B98A" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>{{ f }}</span>
+            </li>
+          </ul>
+
+          <div class="plan-cta">
+            <button class="btn" [class.btn--primary]="plan.isPopular" [class.btn--secondary]="!plan.isPopular" style="width: 100%" (click)="selectPlan(plan.id)">
+              {{ plan.ctaText }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       PRINCIPLES SECTION
+  ============================ -->
+  <section class="section principles-section" aria-labelledby="principles-heading">
+    <div class="container">
+      <div class="section-heading animate-fade-up">
+        <h2 class="section-heading__title" id="principles-heading">Designed Around the Way You Learn.</h2>
+      </div>
+      <div class="principles-grid">
+        <div *ngFor="let p of principles; let i = index"
+             class="principle-card card animate-fade-up"
+             [class]="'delay-' + (i + 1)">
+          <div class="principle-card__icon">
+            <!-- Clock -->
+            <svg *ngIf="p.icon === 'clock'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8175F5" stroke-width="1.8" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <!-- Trending up -->
+            <svg *ngIf="p.icon === 'trending-up'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8175F5" stroke-width="1.8" stroke-linecap="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+            </svg>
+            <!-- Shuffle -->
+            <svg *ngIf="p.icon === 'shuffle'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8175F5" stroke-width="1.8" stroke-linecap="round">
+              <polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/>
+            </svg>
+          </div>
+          <h3 class="principle-card__title">{{ p.title }}</h3>
+          <p class="principle-card__desc">{{ p.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       CTA SECTION
+  ============================ -->
+  <section class="cta-section" aria-labelledby="cta-heading">
+    <div class="cta-section__bg" aria-hidden="true">
+      <div class="cta-section__orb"></div>
+      <div class="cta-section__orbit cta-section__orbit--1"></div>
+      <div class="cta-section__orbit cta-section__orbit--2"></div>
+    </div>
+
+    <div class="container cta-section__container animate-fade-up">
+      <h2 class="cta-section__heading" id="cta-heading">
+        Your Next Breakthrough<br>Starts Here.
+      </h2>
+      <p class="cta-section__sub">
+        Build a study routine that works for your goals, your schedule, and your life.
+      </p>
+      <div class="cta-section__actions">
+        <button class="btn btn--primary btn--lg" (click)="openFeature('/planner')" id="cta-main">
+          Launch Study Planner
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+        <button class="btn cta-section__link" (click)="exploreFeatures()" type="button">
+          Explore Features
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,25 @@
+<div class="toast-container" role="region" aria-label="Notifications" aria-live="polite">
+  <div *ngFor="let toast of toasts; trackBy: trackById"
+       class="toast"
+       [class]="'toast--' + toast.type"
+       role="alert">
+    <div class="toast__icon" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path [attr.d]="getIcon(toast.type)"/>
+      </svg>
+    </div>
+    <div class="toast__body">
+      <p class="toast__title">{{ toast.title }}</p>
+      <p *ngIf="toast.message" class="toast__message">{{ toast.message }}</p>
+    </div>
+    <button class="toast__close btn btn--icon"
+            (click)="dismiss(toast.id)"
+            aria-label="Dismiss notification"
+            type="button">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</div>

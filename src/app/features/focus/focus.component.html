@@ -1,0 +1,260 @@
+<div class="focus-page" [class.dark]="isDark" [class.is-fullscreen]="isFullscreen">
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-overlay" *ngIf="!isFullscreen" [class.active]="isMobileNavOpen" (click)="toggleMobileNav()"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" *ngIf="!isFullscreen" [class.collapsed]="isSidebarCollapsed" [class.mobile-open]="isMobileNavOpen">
+    <div class="sidebar-header">
+      <div class="brand" (click)="navigate('/dashboard')">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="#8175F5" stroke-width="1.5"/>
+            <circle cx="12" cy="12" r="4" fill="#8175F5"/>
+            <line x1="12" y1="3" x2="12" y2="1" stroke="#8175F5" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="12" y1="23" x2="12" y2="21" stroke="#8175F5" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="3" y1="12" x2="1" y2="12" stroke="#8175F5" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="23" y1="12" x2="21" y2="12" stroke="#8175F5" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="brand-name" *ngIf="!isSidebarCollapsed">StudyPilot AI</span>
+      </div>
+      <button class="sidebar-toggle" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item" (click)="navigate('/dashboard')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Dashboard</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/subjects')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Subjects</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/planner')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Study Planner</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/flashcards')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="11" x2="12" y2="15"/><line x1="10" y1="13" x2="14" y2="13"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Flashcards</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/quizzes')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Quizzes</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/coach')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <span *ngIf="!isSidebarCollapsed">AI Coach</span>
+      </a>
+      <a class="nav-item active">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Focus Timer</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/analytics')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Analytics</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/settings')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Settings</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content" [class.sidebar-collapsed]="isSidebarCollapsed" [class.no-sidebar]="isFullscreen">
+    <!-- Topbar -->
+    <header class="topbar" *ngIf="!isFullscreen">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" (click)="toggleMobileNav()" aria-label="Open menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="page-breadcrumb">
+          <span class="breadcrumb-parent" (click)="navigate('/dashboard')">Dashboard</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+          <span class="breadcrumb-current">Focus Pomodoro</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="btn btn--secondary btn--sm" (click)="toggleFullscreen()">
+          {{ isFullscreen ? 'Exit Fullscreen' : 'Fullscreen Focus' }}
+        </button>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <div class="container container--narrow">
+      
+      <!-- Top Mode Selector -->
+      <div class="mode-selector-tabs">
+        <button 
+          class="mode-tab" 
+          [class.is-active]="mode === 'focus'" 
+          (click)="setMode('focus')">
+          Focus ({{ mode === 'focus' ? durationMinutes : 25 }}m)
+        </button>
+        <button 
+          class="mode-tab" 
+          [class.is-active]="mode === 'shortBreak'" 
+          (click)="setMode('shortBreak')">
+          Short Break (5m)
+        </button>
+        <button 
+          class="mode-tab" 
+          [class.is-active]="mode === 'longBreak'" 
+          (click)="setMode('longBreak')">
+          Long Break (15m)
+        </button>
+      </div>
+
+      <!-- Linked Task Banner -->
+      <div class="linked-task-banner">
+        <div class="task-info">
+          <span class="task-pill">{{ linkedSubject }}</span>
+          <h2 class="task-heading">{{ linkedTopic }}</h2>
+        </div>
+      </div>
+
+      <!-- Circular Timer Hub -->
+      <div class="timer-hub">
+        <div class="timer-svg-container">
+          <svg class="timer-svg" viewBox="0 0 300 300">
+            <!-- Background Ring -->
+            <circle 
+              class="timer-circle-bg" 
+              cx="150" 
+              cy="150" 
+              r="130" 
+              stroke-width="12" 
+              fill="none" />
+            
+            <!-- Progress Ring -->
+            <circle 
+              class="timer-circle-progress" 
+              cx="150" 
+              cy="150" 
+              r="130" 
+              stroke-width="12" 
+              fill="none"
+              stroke-linecap="round"
+              [style.strokeDashoffset]="getStrokeDashoffset()"
+              stroke-dasharray="816.8" />
+          </svg>
+
+          <!-- Inside Hub Content -->
+          <div class="timer-inside-hub">
+            <span class="timer-digits">{{ formatTime() }}</span>
+            <span class="timer-state-label">
+              {{ isRunning ? (mode === 'focus' ? 'Deep Work In Progress' : 'Resting Eyes') : (isPaused ? 'Session Paused' : 'Ready to Start') }}
+            </span>
+            <div class="cycle-dots">
+              <span 
+                *ngFor="let dot of [1, 2, 3, 4]; let i = index" 
+                class="cycle-dot"
+                [class.is-done]="completedPomodoros % 4 > i">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary Action Bar -->
+      <div class="timer-actions">
+        <button 
+          class="btn-reset" 
+          (click)="resetTimer()" 
+          title="Reset timer">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+        </button>
+
+        <button 
+          class="btn-timer-primary" 
+          (click)="toggleTimer()"
+          id="btn-timer-toggle">
+          <svg *ngIf="!isRunning" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <svg *ngIf="isRunning" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          </svg>
+        </button>
+
+        <button 
+          class="btn-fullscreen" 
+          (click)="toggleFullscreen()" 
+          title="Toggle Zen Fullscreen">
+          <svg *ngIf="!isFullscreen" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+          </svg>
+          <svg *ngIf="isFullscreen" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Ambient Sound Generator Controls -->
+      <section class="ambient-sound-card">
+        <h3 class="ambient-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+          </svg>
+          Focus Soundscapes
+        </h3>
+        <div class="sound-buttons">
+          <button 
+            class="sound-btn" 
+            [class.is-active]="currentSound === 'rain'" 
+            (click)="setAmbientSound('rain')">
+            🌧️ Rain Storm
+          </button>
+          <button 
+            class="sound-btn" 
+            [class.is-active]="currentSound === 'whitenoise'" 
+            (click)="setAmbientSound('whitenoise')">
+            📻 Brown Noise
+          </button>
+          <button 
+            class="sound-btn" 
+            [class.is-active]="currentSound === 'binaural'" 
+            (click)="setAmbientSound('binaural')">
+            🧘 Alpha Waves (10Hz)
+          </button>
+          <button 
+            class="sound-btn" 
+            *ngIf="currentSound !== 'none'"
+            (click)="setAmbientSound('none')">
+            🔇 Mute
+          </button>
+        </div>
+      </section>
+
+      <!-- Task Quick Switcher -->
+      <section class="available-tasks-list" *ngIf="availableTasks.length > 0 && !isFullscreen">
+        <h3>Switch Active Study Task</h3>
+        <div class="task-chips">
+          <button 
+            *ngFor="let t of availableTasks" 
+            class="task-chip"
+            [class.is-selected]="t.id === linkedTaskId"
+            (click)="selectLinkedTask(t)">
+            <span class="chip-color" [style.background]="t.subjectColor"></span>
+            <span class="chip-title">{{ t.topicName }}</span>
+            <span class="chip-time">{{ t.durationMinutes }}m</span>
+          </button>
+        </div>
+      </section>
+
+    </div><!-- /.container -->
+  </div><!-- /.page-body -->
+</main>
+</div>

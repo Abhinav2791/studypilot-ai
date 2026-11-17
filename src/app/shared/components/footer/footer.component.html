@@ -1,0 +1,98 @@
+<footer class="footer" role="contentinfo">
+  <!-- Decorative orbital lines at top -->
+  <div class="footer-deco" aria-hidden="true">
+    <div class="footer-deco__orbit footer-deco__orbit--1"></div>
+    <div class="footer-deco__orbit footer-deco__orbit--2"></div>
+  </div>
+
+  <div class="footer__main">
+    <div class="container">
+      <div class="footer__grid">
+
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a routerLink="/" class="footer__logo" aria-label="StudyPilot AI Home">
+            <div class="footer-logo-symbol" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+                <circle cx="14" cy="14" r="12.5" stroke="url(#footerLogoGrad)" stroke-width="1.5" fill="none"/>
+                <path d="M14 3 L17 10.5 L14 9 L11 10.5 Z" fill="url(#footerLogoGrad)"/>
+                <path d="M14 25 L11 17.5 L14 19 L17 17.5 Z" fill="rgba(168,160,255,0.5)"/>
+                <circle cx="14" cy="14" r="2.5" fill="url(#footerLogoGrad)"/>
+                <defs>
+                  <linearGradient id="footerLogoGrad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#8175F5"/>
+                    <stop offset="1" stop-color="#A8A0FF"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="footer__logo-text">StudyPilot<span class="accent">AI</span></span>
+          </a>
+          <p class="footer__tagline">
+            Your personalized AI study coach that adapts to your goals, schedule, and progress.
+          </p>
+          <p class="footer__motto">Study with intention. Progress with confidence.</p>
+        </div>
+
+        <!-- Product Links -->
+        <div class="footer__column">
+          <h3 class="footer__heading">Product</h3>
+          <ul class="footer__links" role="list">
+            <li *ngFor="let link of productLinks">
+              <a [routerLink]="link.route" class="footer__link">{{ link.label }}</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Explore Links -->
+        <div class="footer__column">
+          <h3 class="footer__heading">Explore</h3>
+          <ul class="footer__links" role="list">
+            <li *ngFor="let link of exploreLinks">
+              <a *ngIf="link.anchor" class="footer__link" (click)="scrollTo(link.anchor)" role="button" tabindex="0" style="cursor:pointer">
+                {{ link.label }}
+              </a>
+              <a *ngIf="link.route && !link.href" [routerLink]="link.route" class="footer__link">{{ link.label }}</a>
+              <a *ngIf="link.href" [href]="link.href" class="footer__link">{{ link.label }}</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account Links -->
+        <div class="footer__column">
+          <h3 class="footer__heading">Account</h3>
+          <ul class="footer__links" role="list">
+            <li *ngFor="let link of accountLinks">
+              <a [routerLink]="link.route" class="footer__link">{{ link.label }}</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer__bottom">
+    <div class="container">
+      <div class="footer__bottom-inner">
+        <p class="footer__copyright">
+          &copy; {{ currentYear }} StudyPilot AI. All rights reserved.
+        </p>
+        <div class="footer__legal">
+          <a routerLink="/" class="footer__legal-link">Privacy Policy</a>
+          <span class="footer__legal-sep" aria-hidden="true">·</span>
+          <a routerLink="/" class="footer__legal-link">Terms of Service</a>
+        </div>
+        <!-- Small brand symbol -->
+        <div class="footer__symbol" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="12.5" stroke="rgba(168,160,255,0.3)" stroke-width="1.5" fill="none"/>
+            <path d="M14 3 L17 10.5 L14 9 L11 10.5 Z" fill="rgba(168,160,255,0.5)"/>
+            <circle cx="14" cy="14" r="2.5" fill="rgba(168,160,255,0.5)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

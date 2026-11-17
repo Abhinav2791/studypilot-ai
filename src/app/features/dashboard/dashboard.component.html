@@ -1,0 +1,323 @@
+<div class="dashboard-layout" [class.sidebar-collapsed]="isSidebarCollapsed" [class.dark]="isDark">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" [class.is-open]="isMobileNavOpen" aria-label="Main navigation">
+    <div class="sidebar__header">
+      <a routerLink="/" class="sidebar-logo" [class.hidden-label]="isSidebarCollapsed">
+        <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <circle cx="14" cy="14" r="12.5" stroke="url(#sideLogoGrad)" stroke-width="1.5" fill="none"/>
+          <path d="M14 3 L17 10.5 L14 9 L11 10.5 Z" fill="url(#sideLogoGrad)"/>
+          <circle cx="14" cy="14" r="2.5" fill="url(#sideLogoGrad)"/>
+          <defs>
+            <linearGradient id="sideLogoGrad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#8175F5"/><stop offset="1" stop-color="#A8A0FF"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="sidebar-logo__text" *ngIf="!isSidebarCollapsed">StudyPilot<span class="accent">AI</span></span>
+      </a>
+      <button class="sidebar__toggle btn btn--icon btn--ghost"
+              (click)="toggleSidebar()"
+              [attr.aria-label]="isSidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'"
+              type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="sidebar__nav" aria-label="Application sections">
+      <ul role="list">
+        <li *ngFor="let link of sidebarLinks">
+          <a [routerLink]="link.route"
+             routerLinkActive="is-active"
+             class="sidebar-link"
+             [title]="isSidebarCollapsed ? link.label : ''"
+             [attr.aria-label]="link.label">
+            <!-- Home -->
+            <svg *ngIf="link.icon === 'home'" class="sidebar-link__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <!-- Calendar -->
+            <svg *ngIf="link.icon === 'calendar'" class="sidebar-link__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <!-- Book -->
+            <svg *ngIf="link.icon === 'book'" class="sidebar-link__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <!-- Cards -->
+            <svg *ngIf="link.icon === 'cards'" class="sidebar-link__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="11" x2="12" y2="15"/><line x1="10" y1="13" x2="14" y2="13"/></svg>
+            <!-- Message -->
+            <svg *ngIf="link.icon === 'message'" class="sidebar-link__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <!-- Layers -->
+            <svg *ngIf="link.icon === 'layers'" class="sidebar-link__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <!-- Help -->
+            <svg *ngIf="link.icon === 'help'" class="sidebar-link__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <!-- Chart -->
+            <svg *ngIf="link.icon === 'chart'" class="sidebar-link__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <!-- Clock -->
+            <svg *ngIf="link.icon === 'clock'" class="sidebar-link__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="sidebar-link__label" *ngIf="!isSidebarCollapsed">{{ link.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <a routerLink="/settings" class="sidebar-link" [title]="isSidebarCollapsed ? 'Settings' : ''">
+        <svg class="sidebar-link__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <span *ngIf="!isSidebarCollapsed">Settings</span>
+      </a>
+      <button class="sidebar-link sidebar-link--danger" (click)="signOut()" [title]="isSidebarCollapsed ? 'Sign Out' : ''" type="button">
+        <svg class="sidebar-link__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        <span *ngIf="!isSidebarCollapsed">Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Sidebar overlay (mobile) -->
+  <div class="sidebar-overlay" [class.is-visible]="isMobileNavOpen" (click)="toggleMobileNav()"></div>
+
+  <!-- MAIN AREA -->
+  <main class="dashboard-main" role="main">
+
+    <!-- Top Bar -->
+    <header class="topbar" role="banner">
+      <div class="topbar__left">
+        <button class="btn btn--icon btn--ghost mobile-menu-trigger"
+                (click)="toggleMobileNav()"
+                aria-label="Open navigation"
+                type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <div class="topbar__greeting">
+          <h1 class="topbar__title">{{ greeting }}, {{ (user?.name || 'there').split(' ')[0] }}.</h1>
+          <p class="topbar__date">{{ today | date:'EEEE, MMMM d, y' }}</p>
+        </div>
+      </div>
+
+      <div class="topbar__right">
+        <button class="btn btn--icon btn--ghost" (click)="toggleTheme()" [attr.aria-label]="isDark ? 'Light mode' : 'Dark mode'" type="button">
+          <svg *ngIf="!isDark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          </svg>
+          <svg *ngIf="isDark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <div class="topbar__avatar" [attr.aria-label]="user?.name || 'Profile'">
+          {{ user?.avatarInitials || 'U' }}
+        </div>
+        <span *ngIf="isDemoMode" class="demo-badge">DEMO</span>
+      </div>
+    </header>
+
+    <!-- DASHBOARD CONTENT -->
+    <div class="dashboard-content">
+
+      <!-- ── Row 1: Stats ── -->
+      <div class="stats-row">
+        <!-- Today's Progress -->
+        <div class="stat-card card">
+          <div class="stat-card__header">
+            <span class="stat-card__label">Today's Progress</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-primary)" stroke-width="2" aria-hidden="true">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <p class="stat-card__value">{{ todayProgress.completed }}<span class="stat-card__unit">/{{ todayProgress.total }}</span></p>
+          <p class="stat-card__label">tasks completed</p>
+          <div class="stat-card__bar">
+            <div class="stat-card__bar-fill" [style.width]="todayProgress.percentage + '%'"></div>
+          </div>
+        </div>
+
+        <!-- Weekly Study Time -->
+        <div class="stat-card card">
+          <div class="stat-card__header">
+            <span class="stat-card__label">Weekly Study</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <p class="stat-card__value">{{ formatMinutes(weeklyMinutes.completed) }}</p>
+          <p class="stat-card__label">of {{ formatMinutes(weeklyMinutes.planned) }} planned</p>
+          <div class="stat-card__bar">
+            <div class="stat-card__bar-fill stat-card__bar-fill--success" [style.width]="getWeeklyPct() + '%'"></div>
+          </div>
+        </div>
+
+        <!-- Subjects -->
+        <div class="stat-card card">
+          <div class="stat-card__header">
+            <span class="stat-card__label">Subjects</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-warning)" stroke-width="2" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+          </div>
+          <p class="stat-card__value">{{ subjects.length }}</p>
+          <p class="stat-card__label">enrolled subjects</p>
+        </div>
+
+        <!-- Next Exam -->
+        <div class="stat-card card" *ngIf="nextExam">
+          <div class="stat-card__header">
+            <span class="stat-card__label">Next Exam</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-error)" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <p class="stat-card__value">{{ daysUntilExam }}<span class="stat-card__unit"> days</span></p>
+          <p class="stat-card__label">{{ nextExam.subjectName }}</p>
+        </div>
+      </div>
+
+      <!-- ── Row 2: Tasks + Subjects ── -->
+      <div class="content-row">
+
+        <!-- Today's Tasks -->
+        <section class="tasks-section card" aria-labelledby="tasks-heading">
+          <div class="card-header">
+            <h2 class="card-title" id="tasks-heading">Today's Study Plan</h2>
+            <button class="btn btn--ghost btn--sm" (click)="navigate('/planner')" type="button">View All</button>
+          </div>
+
+          <div *ngIf="todayTasks.length === 0" class="empty-state">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-muted)" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <p class="empty-state__text">No tasks scheduled for today.</p>
+            <button class="btn btn--primary btn--sm" (click)="navigate('/planner')" type="button">Create Plan</button>
+          </div>
+
+          <ul class="task-list" role="list" *ngIf="todayTasks.length > 0">
+            <li *ngFor="let task of todayTasks" class="task-item" [class.is-completed]="task.status === 'completed'">
+              <div class="task-item__color-bar" [style.background]="task.subjectColor"></div>
+              <div class="task-item__content">
+                <div class="task-item__meta">
+                  <span class="task-item__subject" [style.color]="task.subjectColor">{{ task.subjectName }}</span>
+                  <span class="badge" [style.background]="getDifficultyColor(task.difficulty) + '20'" [style.color]="getDifficultyColor(task.difficulty)">
+                    {{ task.difficulty }}
+                  </span>
+                  <span *ngIf="task.isRevision" class="badge badge--accent" style="font-size:10px">Revision</span>
+                </div>
+                <p class="task-item__topic">{{ task.topicName }}</p>
+                <div class="task-item__details">
+                  <span class="task-detail">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    {{ task.scheduledTime }}
+                  </span>
+                  <span class="task-detail">
+                    {{ task.durationMinutes }} min
+                  </span>
+                </div>
+              </div>
+              <div class="task-item__actions">
+                <button *ngIf="task.status !== 'completed'"
+                        class="btn btn--primary btn--sm"
+                        (click)="completeTask(task.id)"
+                        [attr.aria-label]="'Mark ' + task.topicName + ' as complete'"
+                        type="button">
+                  Done
+                </button>
+                <span *ngIf="task.status === 'completed'" class="task-check">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Subject Progress -->
+        <section class="subjects-section" aria-labelledby="subjects-heading">
+          <div class="card-header-standalone">
+            <h2 class="card-title" id="subjects-heading">Subject Overview</h2>
+            <button class="btn btn--ghost btn--sm" (click)="navigate('/subjects')" type="button">Manage</button>
+          </div>
+          <div class="subjects-list">
+            <div *ngFor="let subject of subjects" class="subject-progress-card card">
+              <div class="subject-progress-card__header">
+                <div class="subject-dot" [style.background]="subject.color"></div>
+                <span class="subject-progress-card__name">{{ subject.name }}</span>
+                <span class="subject-progress-card__pct" [style.color]="subject.color">{{ subject.progress }}%</span>
+              </div>
+              <div class="progress-bar-wrapper">
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill" [style.width]="subject.progress + '%'" [style.background]="subject.color"></div>
+                </div>
+              </div>
+              <div class="subject-progress-card__meta">
+                <span>{{ subject.completedTopics }}/{{ subject.totalTopics }} topics</span>
+                <span [class]="'revision-badge revision-badge--' + subject.revisionStatus">
+                  {{ subject.revisionStatus === 'not-started' ? 'No revision' : subject.revisionStatus === 'in-progress' ? 'Revising' : 'Revised' }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ── Row 3: AI Recommendation + Quick Actions ── -->
+      <div class="bottom-row">
+
+        <!-- AI Recommendation -->
+        <div class="ai-rec-card card">
+          <div class="ai-rec-card__header">
+            <div class="ai-rec-icon">✦</div>
+            <span class="ai-rec-label">AI Recommendation</span>
+          </div>
+          <p class="ai-rec-text" *ngIf="subjects.length > 0">
+            Focus on <strong>{{ (subjects[0].topics && subjects[0].topics[1] ? subjects[0].topics[1].name : 'your hardest topic') }}</strong> in
+            {{ subjects[0].name }} today — your exam is in {{ daysUntilExam }} days and confidence is low.
+            Consider a 90-minute deep work session before revision.
+          </p>
+          <p class="ai-rec-text" *ngIf="subjects.length === 0">
+            Add your subjects and topics to receive personalized study recommendations.
+          </p>
+          <button class="btn btn--secondary btn--sm" (click)="navigate('/ai-coach')" type="button">
+            Ask AI Coach
+          </button>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <h2 class="card-title" style="margin-bottom: var(--space-4)">Quick Actions</h2>
+          <div class="quick-actions__grid">
+            <button class="quick-action-btn" (click)="navigate('/subjects')" type="button">
+              <div class="quick-action-btn__icon" style="background:rgba(129,117,245,0.1)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8175F5" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <span>Add Subject</span>
+            </button>
+            <button class="quick-action-btn" (click)="navigate('/planner')" type="button">
+              <div class="quick-action-btn__icon" style="background:rgba(56,185,138,0.1)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38B98A" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <span>Study Plan</span>
+            </button>
+            <button class="quick-action-btn" (click)="navigate('/focus')" type="button">
+              <div class="quick-action-btn__icon" style="background:rgba(233,172,85,0.1)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E9AC55" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <span>Focus Timer</span>
+            </button>
+            <button class="quick-action-btn" (click)="navigate('/ai-coach')" type="button">
+              <div class="quick-action-btn__icon" style="background:rgba(91,164,245,0.1)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <span>Ask AI Coach</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /dashboard-content -->
+  </main>
+</div>

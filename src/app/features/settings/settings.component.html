@@ -1,0 +1,254 @@
+<div class="settings-page" [class.dark]="isDark">
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-overlay" [class.active]="isMobileNavOpen" (click)="toggleMobileNav()"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.collapsed]="isSidebarCollapsed" [class.mobile-open]="isMobileNavOpen">
+    <div class="sidebar-header">
+      <div class="brand" (click)="navigate('/dashboard')">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="#8175F5" stroke-width="1.5"/>
+            <circle cx="12" cy="12" r="4" fill="#8175F5"/>
+            <line x1="12" y1="3" x2="12" y2="1" stroke="#8175F5" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="12" y1="23" x2="12" y2="21" stroke="#8175F5" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="3" y1="12" x2="1" y2="12" stroke="#8175F5" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="23" y1="12" x2="21" y2="12" stroke="#8175F5" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="brand-name" *ngIf="!isSidebarCollapsed">StudyPilot AI</span>
+      </div>
+      <button class="sidebar-toggle" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item" (click)="navigate('/dashboard')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Dashboard</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/subjects')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Subjects</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/planner')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Study Planner</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/flashcards')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="11" x2="12" y2="15"/><line x1="10" y1="13" x2="14" y2="13"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Flashcards</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/quizzes')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Quizzes</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/coach')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <span *ngIf="!isSidebarCollapsed">AI Coach</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/focus')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Focus Timer</span>
+      </a>
+      <a class="nav-item" (click)="navigate('/analytics')">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Analytics</span>
+      </a>
+      <a class="nav-item active">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        <span *ngIf="!isSidebarCollapsed">Settings</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content" [class.sidebar-collapsed]="isSidebarCollapsed">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" (click)="toggleMobileNav()" aria-label="Open menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="page-breadcrumb">
+          <span class="breadcrumb-parent" (click)="navigate('/dashboard')">Dashboard</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+          <span class="breadcrumb-current">Settings & Pacing</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <div class="container container--narrow">
+      
+      <header class="settings-header">
+        <h1 class="page-title">Personal Settings & AI Pacing</h1>
+        <p class="page-sub">Configure your daily learning capacity, cognitive study windows, and account preferences.</p>
+      </header>
+
+      <!-- Profile Section -->
+      <section class="settings-card">
+        <div class="card-title-row">
+          <div class="user-avatar-preview">{{ profile.avatarInitials }}</div>
+          <div>
+            <h2>Learner Identity</h2>
+            <p>Your profile information is used to tailor adaptive coaching advice.</p>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" [(ngModel)]="profile.name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" [(ngModel)]="profile.email" disabled>
+          </div>
+        </div>
+      </section>
+
+      <!-- Target Goal Selection -->
+      <section class="settings-card">
+        <div class="card-heading-group">
+          <h2>Primary Academic Objective</h2>
+          <p>The AI engine adjusts revision frequencies and mock test density based on this goal.</p>
+        </div>
+
+        <div class="goals-grid">
+          <div 
+            *ngFor="let g of studyGoals" 
+            class="goal-card"
+            [class.is-selected]="profile.goal === g.id"
+            (click)="profile.goal = g.id">
+            <div class="goal-radio">
+              <span class="radio-dot" *ngIf="profile.goal === g.id"></span>
+            </div>
+            <div class="goal-info">
+              <h3>{{ g.label }}</h3>
+              <p>{{ g.desc }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Daily Study Budget & Windows -->
+      <section class="settings-card">
+        <div class="card-heading-group">
+          <h2>Daily Study Capacity</h2>
+          <p>How many focused hours can you realistically commit each day?</p>
+        </div>
+
+        <div class="capacity-slider-wrap">
+          <div class="capacity-val-display">
+            <span class="capacity-number">{{ profile.dailyStudyHours }}</span>
+            <span class="capacity-unit">hours / day</span>
+          </div>
+
+          <input 
+            type="range" 
+            min="1" 
+            max="10" 
+            step="0.5" 
+            [(ngModel)]="profile.dailyStudyHours">
+
+          <div class="slider-ticks">
+            <span>1 hr (Light Review)</span>
+            <span>4 hrs (Balanced)</span>
+            <span>8+ hrs (Intense Exam Sprint)</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="card-heading-group">
+          <h3>Preferred Cognitive Study Windows</h3>
+          <p>StudyPilot places challenging topics into your selected active time slots.</p>
+        </div>
+
+        <div class="periods-grid">
+          <button 
+            *ngFor="let p of periods" 
+            type="button"
+            class="period-button"
+            [class.is-active]="isPeriodSelected(p.id)"
+            (click)="togglePeriod(p.id)">
+            <span class="period-title">{{ p.label }}</span>
+            <span class="period-time">{{ p.time }}</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Interface & Appearance -->
+      <section class="settings-card">
+        <div class="card-heading-group">
+          <h2>Appearance & Theme</h2>
+          <p>Customize the visual palette for low-light evening study sessions.</p>
+        </div>
+
+        <div class="theme-buttons-row">
+          <button 
+            class="theme-select-card" 
+            [class.is-active]="profile.theme === 'light'"
+            (click)="setTheme('light')">
+            <div class="theme-preview theme-preview--light">
+              <div class="preview-bar"></div>
+              <div class="preview-box"></div>
+            </div>
+            <span>☀️ Bright Canvas</span>
+          </button>
+
+          <button 
+            class="theme-select-card" 
+            [class.is-active]="profile.theme === 'dark'"
+            (click)="setTheme('dark')">
+            <div class="theme-preview theme-preview--dark">
+              <div class="preview-bar"></div>
+              <div class="preview-box"></div>
+            </div>
+            <span>🌙 Midnight Glow</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Data Export & Factory Reset -->
+      <section class="settings-card">
+        <div class="card-heading-group">
+          <h2>Data Management & Backup</h2>
+          <p>Export your full study roadmap and history or restore factory default datasets.</p>
+        </div>
+
+        <div class="data-actions-row">
+          <button class="btn btn--secondary" (click)="exportStudyPlan()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Export Study Plan (JSON)
+          </button>
+
+          <button class="btn btn--danger" (click)="resetToDefaultData()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+            </svg>
+            Reset to Demo Syllabus
+          </button>
+        </div>
+      </section>
+
+      <!-- Save Bar -->
+      <div class="settings-save-bar">
+        <button class="btn btn--primary btn--lg" (click)="savePreferences()" id="btn-save-settings">
+          Save Changes
+        </button>
+      </div>
+
+    </div><!-- /.container -->
+  </div><!-- /.page-body -->
+</main>
+</div>
