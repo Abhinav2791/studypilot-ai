@@ -4,6 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { NotificationService } from '../../core/services/notification.service';
 import { ThemeService } from '../../core/services/theme.service';
+import { UserProfile } from '../../models';
 
 @Component({
   selector: 'app-auth',
@@ -14,6 +15,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   isSignUp = false;
   isDark = false;
   isLoading = false;
+  currentUser: UserProfile | null = null;
 
   formData = {
     name: '',
@@ -36,10 +38,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(theme => this.isDark = theme === 'dark');
 
-    // If already logged in, redirect to dashboard
-    if (this.authService.currentUserValue) {
-      this.router.navigate(['/dashboard']);
-    }
+    this.currentUser = this.authService.currentUserValue;
   }
 
   ngOnDestroy(): void {
@@ -55,11 +54,18 @@ export class AuthComponent implements OnInit, OnDestroy {
 
     this.isLoading = true;
     setTimeout(() => {
-      this.authService.login(this.formData.email, this.formData.name || 'Alex Rivera');
+      const displayName = this.formData.name || this.formData.email.split('@')[0];
+      this.authService.login(this.formData.email, displayName);
       this.isLoading = false;
-      this.notificationService.success('Welcome back!', 'Accessing your AI study dashboard...');
-      this.router.navigate(['/dashboard']);
-    }, 700);
+
+      if (this.isSignUp) {
+        this.notificationService.success('Account Created! 🚀', 'Starting your personalized syllabus onboarding...');
+        this.router.navigate(['/welcome']);
+      } else {
+        this.notificationService.success('Welcome back!', 'Accessing your AI study dashboard...');
+        this.router.navigate(['/dashboard']);
+      }
+    }, 600);
   }
 
   quickDemoLogin(role: 'eng' | 'med' | 'law'): void {
@@ -76,5 +82,19 @@ export class AuthComponent implements OnInit, OnDestroy {
       this.notificationService.success('Demo Session Started', 'Logged in with prepared syllabus data.');
       this.router.navigate(['/dashboard']);
     }, 500);
+  }
+
+  openWelcomeWizard(): void {
+    this.router.navigate(['/welcome']);
+  }
+
+  openDashboard(): void {
+    this.router.navigate(['/dashboard']);
+  }
+
+  logoutSession(): void {
+    this.authService.signOut();
+    this.currentUser = null;
+    this.notificationService.info('Signed Out', 'You have been signed out.');
   }
 }

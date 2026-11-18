@@ -215,7 +215,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   navigateToGetStarted(): void {
-    this.router.navigate(['/welcome']);
+    this.router.navigate(['/auth']);
     this.closeMobileMenu();
     this.closeFeaturesDropdown();
   }

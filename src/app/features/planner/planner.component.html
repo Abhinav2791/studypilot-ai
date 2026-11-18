@@ -80,11 +80,16 @@
         </div>
       </div>
       <div class="topbar-right">
-        <button class="btn btn--secondary btn--sm" (click)="isAiRebalanceModalOpen = true">
-          ✦ AI Auto-Rebalance
-        </button>
-        <button class="btn btn--primary btn--sm" (click)="openAddTaskModal()">
-          + Add Task
+        <span class="active-pacing-pill">
+          <span class="pulsing-green-dot"></span>
+          Adaptive Engine Online
+        </span>
+        <button class="btn btn--primary btn--sm header-action-btn" (click)="openAddTaskModal()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Add Task
         </button>
       </div>
     </header>
@@ -458,21 +463,39 @@
 
         <div class="ai-factors-box">
           <div class="factor-item">
-            <span class="factor-icon">📅</span>
+            <div class="factor-icon-wrap" style="background: rgba(129, 117, 245, 0.12); color: #8175F5;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
             <div>
-              <strong>Exam Proximity</strong>
+              <strong>Exam Proximity Calibration</strong>
               <p>Allocates 40% more study slots to subjects tested within 2 weeks</p>
             </div>
           </div>
           <div class="factor-item">
-            <span class="factor-icon">🧠</span>
+            <div class="factor-icon-wrap" style="background: rgba(233, 172, 85, 0.12); color: #E9AC55;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
             <div>
               <strong>Weakness Prioritization</strong>
               <p>Schedules Hard & Low-Confidence topics during peak morning slots</p>
             </div>
           </div>
           <div class="factor-item">
-            <span class="factor-icon">⏱️</span>
+            <div class="factor-icon-wrap" style="background: rgba(56, 185, 138, 0.12); color: #38B98A;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
             <div>
               <strong>Cognitive Rest Intervals</strong>
               <p>Inserts spaced repetition breaks to prevent burnout</p>

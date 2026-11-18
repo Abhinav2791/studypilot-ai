@@ -79,7 +79,27 @@
                 [class.selected]="selectedGoal === g.id"
                 (click)="selectedGoal = g.id">
                 <div class="goal-card-top">
-                  <span class="goal-icon">{{ g.icon }}</span>
+                  <div class="goal-icon-wrap">
+                    <svg *ngIf="g.icon === 'academic'" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8175F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    <svg *ngIf="g.icon === 'code'" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38B98A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="16 18 22 12 16 6"></polyline>
+                      <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                    <svg *ngIf="g.icon === 'bolt'" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E9AC55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <svg *ngIf="g.icon === 'brain'" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <circle cx="12" cy="12" r="4"></circle>
+                      <line x1="12" y1="2" x2="12" y2="4"></line>
+                      <line x1="12" y1="20" x2="12" y2="22"></line>
+                      <line x1="2" y1="12" x2="4" y2="12"></line>
+                      <line x1="20" y1="12" x2="22" y2="12"></line>
+                    </svg>
+                  </div>
                   <div class="radio-indicator">
                     <span class="radio-dot" *ngIf="selectedGoal === g.id"></span>
                   </div>
@@ -174,7 +194,35 @@
                 *ngFor="let p of periodOptions"
                 [class.selected]="isPeriodSelected(p.id)"
                 (click)="togglePeriod(p.id)">
-                <span class="p-icon">{{ p.icon }}</span>
+                <div class="p-icon-wrap">
+                  <svg *ngIf="p.icon === 'morning'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E9AC55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                  </svg>
+                  <svg *ngIf="p.icon === 'afternoon'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                  </svg>
+                  <svg *ngIf="p.icon === 'evening'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8175F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 18a5 5 0 0 0-10 0"></path>
+                    <line x1="12" y1="2" x2="12" y2="9"></line>
+                    <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line>
+                    <line x1="1" y1="18" x2="3" y2="18"></line>
+                    <line x1="21" y1="18" x2="23" y2="18"></line>
+                    <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line>
+                  </svg>
+                  <svg *ngIf="p.icon === 'night'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A8A0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                  </svg>
+                </div>
                 <span class="p-label">{{ p.label }}</span>
                 <span class="p-time">{{ p.time }}</span>
                 <div class="p-check" *ngIf="isPeriodSelected(p.id)">✓</div>
@@ -220,10 +268,22 @@
         </div>
 
         <div class="plan-summary-chips" *ngIf="!isGenerating">
-          <div class="chip">🎓 {{ selectedGoal | uppercase }}</div>
-          <div class="chip">⏱️ {{ dailyHours }}h Daily Pacing</div>
-          <div class="chip">📚 {{ onboardingSubjects.length }} Active Subjects</div>
-          <div class="chip">🔄 Spaced Repetition Ready</div>
+          <div class="chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span>{{ selectedGoal | uppercase }}</span>
+          </div>
+          <div class="chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>{{ dailyHours }}h Daily Commitment</span>
+          </div>
+          <div class="chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>{{ onboardingSubjects.length }} Active Subjects</span>
+          </div>
+          <div class="chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            <span>Spaced Repetition Active</span>
+          </div>
         </div>
 
         <div class="launch-actions" *ngIf="!isGenerating">

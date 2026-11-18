@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#191B30"/>
+      <stop offset="100%" stop-color="#111323"/>
+    </linearGradient>
+    <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8175F5"/>
+      <stop offset="50%" stop-color="#A8A0FF"/>
+      <stop offset="100%" stop-color="#38B98A"/>
+    </linearGradient>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="40%" stop-color="#A8A0FF"/>
+      <stop offset="80%" stop-color="#8175F5"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded pill -->
+  <rect width="64" height="64" rx="16" fill="url(#bgGrad)"/>
+  <rect width="62" height="62" x="1" y="1" rx="15" fill="none" stroke="rgba(129, 117, 245, 0.3)" stroke-width="1.5"/>
+
+  <!-- Orbital Ellipse 1 (Rotated) -->
+  <ellipse cx="32" cy="32" rx="22" ry="9" fill="none" stroke="url(#orbitGrad)" stroke-width="2.2" transform="rotate(-30 32 32)" opacity="0.85"/>
+
+  <!-- Orbital Ellipse 2 (Opposite rotation) -->
+  <ellipse cx="32" cy="32" rx="22" ry="9" fill="none" stroke="rgba(168, 160, 255, 0.45)" stroke-width="1.5" stroke-dasharray="3 3" transform="rotate(30 32 32)"/>
+
+  <!-- Waypoint Compass Pointers (North/South/East/West subtle ticks) -->
+  <line x1="32" y1="12" x2="32" y2="16" stroke="#A8A0FF" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="48" x2="32" y2="52" stroke="#A8A0FF" stroke-width="2" stroke-linecap="round"/>
+  <line x1="12" y1="32" x2="16" y2="32" stroke="#A8A0FF" stroke-width="2" stroke-linecap="round"/>
+  <line x1="48" y1="32" x2="52" y2="32" stroke="#A8A0FF" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Orbiting Satellite Node -->
+  <circle cx="48" cy="23" r="3.2" fill="#38B98A" filter="url(#glow)"/>
+
+  <!-- Central Luminous Core / Waypoint Star -->
+  <circle cx="32" cy="32" r="7.5" fill="url(#coreGlow)" filter="url(#glow)"/>
+  <circle cx="32" cy="32" r="3.5" fill="#FFFFFF"/>
+</svg>

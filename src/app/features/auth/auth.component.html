@@ -9,19 +9,22 @@
       </div>
 
       <div class="brand-header">
-        <a routerLink="/" class="brand-logo">
+        <a routerLink="/" class="brand-logo" aria-label="StudyPilot AI Home">
           <div class="logo-symbol">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+              <circle cx="14" cy="14" r="12.5" stroke="#A8A0FF" stroke-width="1.5" fill="none"/>
+              <path d="M14 3 L17 10.5 L14 9 L11 10.5 Z" fill="#A8A0FF"/>
+              <path d="M14 25 L11 17.5 L14 19 L17 17.5 Z" fill="rgba(168,160,255,0.5)"/>
+              <circle cx="14" cy="14" r="2.5" fill="#FFFFFF"/>
             </svg>
           </div>
-          <span>StudyPilot AI</span>
+          <span class="logo-text">StudyPilot<span class="logo-accent">AI</span></span>
         </a>
       </div>
 
       <div class="brand-hero-content">
-        <h2>Intelligent Study Pacing Designed for Mastery</h2>
-        <p>Join thousands of high-performing students mastering complex syllabi through cognitive science, spaced repetition, and predictive time allocation.</p>
+        <h2>Intelligent Study Pacing Designed for Academic Mastery</h2>
+        <p>Master complex syllabi through cognitive science, spaced repetition, adaptive day-by-day scheduling, and an AI study coach that never sleeps.</p>
 
         <div class="brand-stats-row">
           <div class="stat-pill">
@@ -32,73 +35,120 @@
             <strong>92%</strong>
             <span>Exam Readiness</span>
           </div>
+          <div class="stat-pill">
+            <strong>100%</strong>
+            <span>Free & Open</span>
+          </div>
         </div>
       </div>
 
       <div class="brand-footer-quote">
-        “StudyPilot reorganized my chaotic 6-course schedule into crystal clear 45-minute daily focus sprints.”
+        <p>“StudyPilot reorganized my chaotic 6-course schedule into crystal clear 45-minute daily focus sprints with zero burnout.”</p>
         <span>— Sarah C., Stanford University</span>
       </div>
     </div>
 
     <!-- Right Form Column -->
     <div class="auth-form-side">
-      <div class="auth-tabs">
+
+      <!-- Active Session Notice (if already signed in) -->
+      <div *ngIf="currentUser" class="active-session-banner">
+        <div class="session-info">
+          <span class="session-badge">Active Session</span>
+          <div class="session-user">
+            <strong>{{ currentUser.name }}</strong>
+            <small>{{ currentUser.email }}</small>
+          </div>
+        </div>
+        <div class="session-actions">
+          <button class="btn btn--primary btn--sm" (click)="openDashboard()">
+            Open Dashboard →
+          </button>
+          <button class="btn btn--secondary btn--sm" (click)="openWelcomeWizard()">
+            Syllabus Setup Wizard
+          </button>
+          <button class="btn btn--ghost btn--sm" (click)="logoutSession()" title="Sign out this user">
+            Sign Out
+          </button>
+        </div>
+      </div>
+
+      <!-- Auth Switch Tabs -->
+      <div class="auth-tabs" role="tablist">
         <button 
           class="auth-tab" 
           [class.is-active]="!isSignUp" 
-          (click)="isSignUp = false">
+          (click)="isSignUp = false"
+          role="tab"
+          [attr.aria-selected]="!isSignUp">
           Sign In
         </button>
         <button 
           class="auth-tab" 
           [class.is-active]="isSignUp" 
-          (click)="isSignUp = true">
+          (click)="isSignUp = true"
+          role="tab"
+          [attr.aria-selected]="isSignUp">
           Create Account
         </button>
       </div>
 
       <div class="form-header">
         <h1>{{ isSignUp ? 'Begin Your Cognitive Journey' : 'Welcome Back, Scholar' }}</h1>
-        <p>{{ isSignUp ? 'Set up your AI Study Coach in less than 2 minutes.' : 'Enter your credentials or use instant demo mode.' }}</p>
+        <p>{{ isSignUp ? 'Create your profile to start the 3-step Syllabus Setup Wizard.' : 'Enter your credentials or choose a 1-click instant demo profile below.' }}</p>
       </div>
 
       <!-- Quick Demo Login Presets -->
       <div class="demo-login-box">
-        <span class="demo-label">Instant Demo Roles:</span>
+        <span class="demo-label">Instant Student Profiles (1-Click Demo)</span>
         <div class="demo-buttons">
-          <button type="button" class="btn-demo" (click)="quickDemoLogin('eng')">
-            💻 CS & Engineering
+          <button type="button" class="btn-demo" (click)="quickDemoLogin('eng')" title="Alex Rivera (CS & Software Engineering, MIT)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8175F5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <span>Engineering (CS)</span>
           </button>
-          <button type="button" class="btn-demo" (click)="quickDemoLogin('med')">
-            🩺 Pre-Med / Biology
+          <button type="button" class="btn-demo" (click)="quickDemoLogin('med')" title="Sarah Chen (Pre-Med / Biology, Johns Hopkins)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#38B98A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+            <span>Pre-Med / Bio</span>
           </button>
-          <button type="button" class="btn-demo" (click)="quickDemoLogin('law')">
-            ⚖️ Law / Pre-Bar
+          <button type="button" class="btn-demo" (click)="quickDemoLogin('law')" title="Marcus Vance (Law & Pre-Bar, Stanford)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E9AC55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="3" x2="12" y2="21"></line>
+              <path d="M5 6l7-3 7 3"></path>
+              <path d="M5 10l-2 5h6l-2-5"></path>
+              <path d="M19 10l-2 5h6l-2-5"></path>
+            </svg>
+            <span>Law / Pre-Bar</span>
           </button>
         </div>
       </div>
 
       <div class="auth-divider">
-        <span>or with email</span>
+        <span>or sign {{ isSignUp ? 'up' : 'in' }} with email</span>
       </div>
 
       <form class="auth-form" (ngSubmit)="onSubmit()">
         <div class="form-group" *ngIf="isSignUp">
-          <label class="form-label">Full Name</label>
+          <label class="form-label" for="auth-name">Your Full Name</label>
           <input 
             type="text" 
+            id="auth-name"
             class="form-control" 
             [(ngModel)]="formData.name" 
             name="name"
-            placeholder="e.g. Alex Rivera" 
+            placeholder="e.g. Alex Johnson" 
             required>
         </div>
 
         <div class="form-group">
-          <label class="form-label">Academic or Personal Email</label>
+          <label class="form-label" for="auth-email">Academic or Personal Email</label>
           <input 
             type="email" 
+            id="auth-email"
             class="form-control" 
             [(ngModel)]="formData.email" 
             name="email"
@@ -108,11 +158,12 @@
 
         <div class="form-group">
           <div class="form-label-row">
-            <label class="form-label">Password</label>
-            <a *ngIf="!isSignUp" href="#" class="forgot-link" (click)="$event.preventDefault()">Forgot?</a>
+            <label class="form-label" for="auth-password">Password</label>
+            <a *ngIf="!isSignUp" href="#" class="forgot-link" (click)="$event.preventDefault()">Forgot password?</a>
           </div>
           <input 
             type="password" 
+            id="auth-password"
             class="form-control" 
             [(ngModel)]="formData.password" 
             name="password"
@@ -125,9 +176,20 @@
           class="btn btn--primary btn-auth-submit" 
           [disabled]="isLoading"
           id="btn-auth-submit">
-          {{ isLoading ? 'Authenticating...' : (isSignUp ? 'Create Free Account' : 'Sign In to Dashboard') }}
+          <span *ngIf="!isLoading">
+            {{ isSignUp ? 'Create Account & Start Setup →' : 'Sign In to Dashboard →' }}
+          </span>
+          <span *ngIf="isLoading">Authenticating...</span>
         </button>
       </form>
+
+      <!-- Wizard Direct Link -->
+      <div class="wizard-shortcut">
+        <span>Want to test the setup flow directly?</span>
+        <button class="link-btn" (click)="openWelcomeWizard()">
+          Launch 3-Step Syllabus Setup Wizard ✦
+        </button>
+      </div>
 
       <div class="auth-disclaimer">
         By continuing, you agree to StudyPilot AI’s 

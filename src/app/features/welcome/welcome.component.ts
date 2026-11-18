@@ -29,25 +29,25 @@ export class WelcomeComponent implements OnInit, OnDestroy {
       id: 'semester',
       title: 'Semester Finals & GPA',
       desc: 'Balanced study plans to maximize grades across all university courses.',
-      icon: '🎓'
+      icon: 'academic'
     },
     {
       id: 'placement',
       title: 'Placements & Technical Prep',
       desc: 'Deep focus on DSA, System Design, Algorithms, and Core CS Fundamentals.',
-      icon: '💻'
+      icon: 'code'
     },
     {
       id: 'competitive',
       title: 'Competitive & Entrance Exams',
       desc: 'High-velocity test pacing, mock test reviews, and weak topic diagnostic sprints.',
-      icon: '⚡'
+      icon: 'bolt'
     },
     {
       id: 'general',
       title: 'Lifelong Skill Mastery',
       desc: 'Self-paced learning routines without stress or looming exam deadlines.',
-      icon: '🧠'
+      icon: 'brain'
     }
   ];
 
@@ -65,10 +65,10 @@ export class WelcomeComponent implements OnInit, OnDestroy {
   selectedPeriods: StudyPeriod[] = ['morning', 'evening'];
 
   periodOptions: { id: StudyPeriod; label: string; time: string; icon: string }[] = [
-    { id: 'morning', label: 'Morning Sprint', time: '08:00 - 11:30', icon: '🌅' },
-    { id: 'afternoon', label: 'Afternoon Block', time: '13:00 - 16:30', icon: '☀️' },
-    { id: 'evening', label: 'Evening Deep Work', time: '18:00 - 21:00', icon: '🌇' },
-    { id: 'night', label: 'Late Night Review', time: '21:30 - 00:30', icon: '🌙' }
+    { id: 'morning', label: 'Morning Sprint', time: '08:00 - 11:30', icon: 'morning' },
+    { id: 'afternoon', label: 'Afternoon Block', time: '13:00 - 16:30', icon: 'afternoon' },
+    { id: 'evening', label: 'Evening Deep Work', time: '18:00 - 21:00', icon: 'evening' },
+    { id: 'night', label: 'Late Night Review', time: '21:30 - 00:30', icon: 'night' }
   ];
 
   private destroy$ = new RxSubject<void>();

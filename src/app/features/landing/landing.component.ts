@@ -203,7 +203,11 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   buildMyPlan(): void {
-    this.router.navigate(['/planner']);
+    this.router.navigate(['/auth']);
+  }
+
+  openWelcomeWizard(): void {
+    this.router.navigate(['/welcome']);
   }
 
   exploreFeatures(): void {

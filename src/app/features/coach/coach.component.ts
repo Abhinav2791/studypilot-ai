@@ -31,25 +31,25 @@ export class CoachComponent implements OnInit, OnDestroy {
 
   quickPrompts: QuickPrompt[] = [
     {
-      icon: '⚡',
+      icon: 'bolt',
       title: 'Explain In 3 Minutes',
       prompt: 'Explain Database Normalization (1NF to 3NF) with a simple real-world restaurant menu analogy.',
       tag: 'Mental Model'
     },
     {
-      icon: '🎯',
+      icon: 'target',
       title: 'Generate Quick Quiz',
       prompt: 'Create 3 challenging multiple-choice questions on Java Stream API with clear explanations.',
       tag: 'Practice'
     },
     {
-      icon: '🧠',
+      icon: 'strategy',
       title: 'Study Strategy',
       prompt: 'I have 14 days until my Operating Systems midterm. How should I allocate my 2 daily study hours?',
       tag: 'Pacing'
     },
     {
-      icon: '💡',
+      icon: 'bulb',
       title: 'Memory Mnemonic',
       prompt: 'Give me memorable acronyms and mnemonics to memorize the 7 layers of the OSI model.',
       tag: 'Retention'
@@ -208,11 +208,11 @@ Here are two classic mnemonics that top engineering students use:
 **From Bottom (Layer 1) to Top (Layer 7):**
 > **"Please Do Not Throw Sausage Pizza Away"**
 
-🎯 **Pro Exam Tip:** Exam questions love testing Layer 2 (Frames/MAC) vs Layer 3 (Packets/IP) distinctions!`;
+**Pro Exam Tip:** Exam questions frequently test Layer 2 (Frames/MAC) vs Layer 3 (Packets/IP) boundaries!`;
     }
 
     if (lower.includes('14 days') || lower.includes('operating systems') || lower.includes('plan') || lower.includes('midterm')) {
-      return `### 📅 14-Day Tactical Study Blueprint for Operating Systems
+      return `### 14-Day Tactical Study Blueprint for Operating Systems
 
 With 2 hours daily (28 total hours), here is your highest-yield strategy:
 
@@ -228,7 +228,7 @@ I have already updated your planner schedule with these milestones!`;
     }
 
     // Default intelligent response
-    return `### 🧠 Study Coach Insights
+    return `### Study Coach Cognitive Brief
 
 Regarding **"${query}"**:
 

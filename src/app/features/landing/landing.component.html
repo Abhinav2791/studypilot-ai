@@ -32,12 +32,18 @@
 
         <div class="hero__ctas animate-fade-up delay-4">
           <button class="btn btn--primary btn--lg" (click)="buildMyPlan()" id="hero-cta-primary">
-            Build My Study Plan
+            <span>Get Started / Sign In</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </button>
-          <button class="btn btn--secondary btn--lg" (click)="exploreFeatures()" id="hero-cta-secondary">
+          <button class="btn btn--secondary btn--lg" (click)="openWelcomeWizard()" id="hero-cta-wizard" title="Start 3-step syllabus setup">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <span>Syllabus Wizard</span>
+          </button>
+          <button class="btn btn--ghost btn--lg" (click)="exploreFeatures()" id="hero-cta-secondary">
             Explore Features
           </button>
         </div>
@@ -484,8 +490,8 @@
         Build a study routine that works for your goals, your schedule, and your life.
       </p>
       <div class="cta-section__actions">
-        <button class="btn btn--primary btn--lg" (click)="openFeature('/planner')" id="cta-main">
-          Launch Study Planner
+        <button class="btn btn--primary btn--lg" (click)="createPlan()" id="cta-main">
+          Get Started Free
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>

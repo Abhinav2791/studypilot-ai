@@ -64,53 +64,45 @@ function generateDemoTasks(): StudyTask[] {
   const today = new Date();
   const tasks: StudyTask[] = [];
 
-  const taskConfigs = [
-    { subjectId: 'sub-001', subjectName: 'Java Programming', subjectColor: '#8175F5', topicName: 'Streams & Lambda', time: '09:00', duration: 90, difficulty: 'hard' as DifficultyLevel, status: 'completed' as TaskStatus, type: 'study' as const },
-    { subjectId: 'sub-002', subjectName: 'Database Management', subjectColor: '#38B98A', topicName: 'Normalization', time: '11:00', duration: 60, difficulty: 'hard' as DifficultyLevel, status: 'in-progress' as TaskStatus, type: 'study' as const },
-    { subjectId: 'sub-003', subjectName: 'Operating Systems', subjectColor: '#E9AC55', topicName: 'Memory Management', time: '14:00', duration: 75, difficulty: 'medium' as DifficultyLevel, status: 'pending' as TaskStatus, type: 'study' as const },
-    { subjectId: 'sub-001', subjectName: 'Java Programming', subjectColor: '#8175F5', topicName: 'OOP Revision', time: '16:00', duration: 45, difficulty: 'easy' as DifficultyLevel, status: 'pending' as TaskStatus, type: 'revision' as const },
-    { subjectId: 'sub-004', subjectName: 'Computer Networks', subjectColor: '#5BA4F5', topicName: 'Network Security', time: '18:00', duration: 60, difficulty: 'hard' as DifficultyLevel, status: 'pending' as TaskStatus, type: 'study' as const }
+  const sampleTopics = [
+    { subjectId: 'sub-001', subjectName: 'Java Programming', color: '#8175F5', topic: 'Streams & Lambda Pipelines', diff: 'hard' as DifficultyLevel, time: '09:00', dur: 90, type: 'study' as const },
+    { subjectId: 'sub-002', subjectName: 'Database Management', color: '#38B98A', topic: 'BCNF & Normalization Proofs', diff: 'hard' as DifficultyLevel, time: '11:30', dur: 60, type: 'study' as const },
+    { subjectId: 'sub-003', subjectName: 'Operating Systems', color: '#E9AC55', topic: 'Virtual Memory & Page Replacement', diff: 'medium' as DifficultyLevel, time: '14:30', dur: 75, type: 'study' as const },
+    { subjectId: 'sub-004', subjectName: 'Computer Networks', color: '#5BA4F5', topic: 'TCP Sliding Window & Flow Control', diff: 'medium' as DifficultyLevel, time: '17:00', dur: 60, type: 'revision' as const },
+    { subjectId: 'sub-001', subjectName: 'Java Programming', color: '#8175F5', topic: 'Collections & HashMaps Deep Dive', diff: 'medium' as DifficultyLevel, time: '10:00', dur: 60, type: 'study' as const },
+    { subjectId: 'sub-002', subjectName: 'Database Management', color: '#38B98A', topic: 'Indexing, B+ Trees & Query Panning', diff: 'hard' as DifficultyLevel, time: '13:00', dur: 90, type: 'study' as const },
+    { subjectId: 'sub-003', subjectName: 'Operating Systems', color: '#E9AC55', topic: 'Deadlocks & Banker\'s Algorithm', diff: 'hard' as DifficultyLevel, time: '15:30', dur: 60, type: 'revision' as const },
+    { subjectId: 'sub-004', subjectName: 'Computer Networks', color: '#5BA4F5', topic: 'Subnetting & CIDR Routing Tables', diff: 'easy' as DifficultyLevel, time: '18:30', dur: 45, type: 'study' as const }
   ];
 
-  taskConfigs.forEach((cfg, i) => {
+  // Populate 7 days around today (-2 to +4)
+  for (let offset = -2; offset <= 4; offset++) {
     const date = new Date(today);
-    date.setDate(date.getDate() - (i > 2 ? 0 : 0));
-    tasks.push({
-      id: `task-${i + 1}`,
-      subjectId: cfg.subjectId,
-      subjectName: cfg.subjectName,
-      subjectColor: cfg.subjectColor,
-      topicName: cfg.topicName,
-      scheduledDate: date,
-      scheduledTime: cfg.time,
-      durationMinutes: cfg.duration,
-      difficulty: cfg.difficulty,
-      status: cfg.status,
-      isRevision: cfg.type === 'revision',
-      type: cfg.type
-    });
-  });
+    date.setDate(date.getDate() + offset);
 
-  // Add tasks for next few days
-  for (let day = 1; day <= 6; day++) {
-    const date = new Date(today);
-    date.setDate(date.getDate() + day);
-    const subject = DEMO_SUBJECTS[day % DEMO_SUBJECTS.length];
-    const topic = subject.topics[0];
-    tasks.push({
-      id: `task-future-${day}`,
-      subjectId: subject.id,
-      subjectName: subject.name,
-      subjectColor: subject.color,
-      topicName: topic?.name || 'Study Session',
-      scheduledDate: date,
-      scheduledTime: '10:00',
-      durationMinutes: 60,
-      difficulty: topic?.difficulty || 'medium',
-      status: 'pending',
-      isRevision: false,
-      type: 'study'
-    });
+    // 3 to 4 tasks per day
+    const count = 3 + (Math.abs(offset) % 2);
+    for (let j = 0; j < count; j++) {
+      const sample = sampleTopics[(Math.abs(offset) * 2 + j) % sampleTopics.length];
+      const isPast = offset < 0 || (offset === 0 && j === 0);
+      const isCurrent = offset === 0 && j === 1;
+
+      tasks.push({
+        id: `task-d${offset}-${j + 1}`,
+        subjectId: sample.subjectId,
+        subjectName: sample.subjectName,
+        subjectColor: sample.color,
+        topicName: sample.topic,
+        scheduledDate: date,
+        scheduledTime: sample.time,
+        durationMinutes: sample.dur,
+        difficulty: sample.diff,
+        status: isPast ? 'completed' : (isCurrent ? 'in-progress' : 'pending'),
+        isRevision: sample.type === 'revision',
+        type: sample.type,
+        notes: `Focus on core principles, synthesis diagrams, and edge cases for upcoming assessments.`
+      });
+    }
   }
 
   return tasks;
@@ -466,10 +458,11 @@ export class StudyPlannerService {
     const tasks = this.storage.get<StudyTask[]>('tasks', []);
     const examDates = this.storage.get<ExamDate[]>('exam_dates', []);
 
-    // Seed demo data on first load
-    if (subjects.length === 0) {
+    // Seed demo data on first load or if tasks are sparse
+    if (subjects.length === 0 || tasks.length < 10) {
       this.subjectsSubject.next(DEMO_SUBJECTS);
-      this.tasksSubject.next(generateDemoTasks());
+      const demoTasks = generateDemoTasks();
+      this.tasksSubject.next(demoTasks);
       this.examDatesSubject.next([
         { id: 'exam-001', subjectId: 'sub-001', subjectName: 'Java Programming', date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000), type: 'final' },
         { id: 'exam-002', subjectId: 'sub-002', subjectName: 'Database Management', date: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000), type: 'final' }
